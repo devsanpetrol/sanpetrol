@@ -28,7 +28,7 @@
     <link href="vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="build/css/custom.min.css" rel="stylesheet">
+    <link href="build/css/custom.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -38,7 +38,7 @@
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
                 <a href="index.html" class="site_title" style="height: 90px;">
-                    <div class="profile profile_pic"><img src="page/img/SANPETROL_LOGO.png" alt="..." class="img-circle profile_img"></div><span>SANPETROL</span></a>
+                    <div class="profile profile_pic"><img src="page/img/logo.jpg" alt="..." class="img-circle profile_img"></div><span>SANPETROL</span></a>
             </div>
 
             <div class="clearfix"></div>
