@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 class conect 
-{ 
+{
     protected $_db;
 
     public function __construct() 

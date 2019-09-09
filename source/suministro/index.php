@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,6 +28,12 @@
     <link href="../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="../../build/css/custom.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="../../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="../../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -44,74 +50,10 @@
             <!-- sidebar menu -->
             <?php include '../../sidebar/side_bar_menu.php'; ?>
             <!-- /sidebar menu -->
-            
-            <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
-            <!-- /menu footer buttons -->
           </div>
         </div>
-
         <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav>
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                      <img src="../../production/images/img.jpg" alt="">Administrador
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Perfil</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Configuración</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Ayuda</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
-                  </ul>
-                </li>
-
-                <li role="presentation" class="dropdown">
-                  <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-                    <i class="fa fa-envelope-o"></i>
-                    <span class="badge bg-green">6</span>
-                  </a>
-                  <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                    
-                    <li>
-                      <div class="text-center">
-                        <a>
-                          <strong>Ver todas las notificaciones</strong>
-                          <i class="fa fa-angle-right"></i>
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
+        <?php include '../../sidebar/top_navigation.php'; ?>
         <!-- /top navigation -->
 
         <!-- page content -->
@@ -122,71 +64,26 @@
               <div class="col-md-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Solicitud de Materiales <small>Materiales, Bienes y/o Equipo</small></h2>
+                    <h2>Inventario <small>Materiales, Bienes y/o Equipo</small></h2>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <br />
-                    <form class="form-horizontal form-label-left input_mask">
-
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess2" placeholder="First Name">
-                        <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
-                      </div>
-
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess3" placeholder="Last Name">
-                        <span class="fa fa-user form-control-feedback right" aria-hidden="true"></span>
-                      </div>
-
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control has-feedback-left" id="inputSuccess4" placeholder="Email">
-                        <span class="fa fa-envelope form-control-feedback left" aria-hidden="true"></span>
-                      </div>
-
-                      <div class="col-md-6 col-sm-6 col-xs-12 form-group has-feedback">
-                        <input type="text" class="form-control" id="inputSuccess5" placeholder="Phone">
-                        <span class="fa fa-phone form-control-feedback right" aria-hidden="true"></span>
-                      </div>
-
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Default Input</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" placeholder="Default Input">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Disabled Input </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" disabled="disabled" placeholder="Disabled Input">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Read-Only Input</label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input type="text" class="form-control" readonly="readonly" placeholder="Read-Only Input">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Birth <span class="required">*</span>
-                        </label>
-                        <div class="col-md-9 col-sm-9 col-xs-12">
-                          <input class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
-                        </div>
-                      </div>
-                      <div class="ln_solid"></div>
-                      <div class="form-group">
-                        <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
-                          <button type="button" class="btn btn-primary">Cancel</button>
-			  <button class="btn btn-primary" type="reset">Reset</button>
-                          <button type="submit" class="btn btn-success">Submit</button>
-                        </div>
-                      </div>
-
-                    </form>
+                    <table id="datatable" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                      <thead>
+                        <tr>
+                          <th>Clave</th>
+                          <th>Articulo</th>
+                          <th>Categoria</th>
+                          <th>Marca</th>
+                          <th>Stock Min</th>
+                          <th>Stock Max</th>
+                          <th>Stock</th>
+                        </tr>
+                      </thead>
+                      <tbody></tbody>
+                    </table>
                   </div>
                 </div>
-          
           <br />
           <div class="row">
           </div>
@@ -194,14 +91,8 @@
           </div>
         </div>
         <!-- /page content -->
-
         <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            
-          </div>
-          <div class="clearfix"></div>
-        </footer>
+        <?php include '../../sidebar/footer_content.php'; ?>
         <!-- /footer content -->
       </div>
     </div>
@@ -241,5 +132,23 @@
     <script src="../../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="../../build/js/custom.min.js"></script>
+    <!-- Datatables -->
+    <script src="../../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="../../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="../../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="../../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="../../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="../../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="../../vendors/jszip/dist/jszip.min.js"></script>
+    <script src="../../vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="../../vendors/pdfmake/build/vfs_fonts.js"></script>
+    
+    <script src="js/engineJS.js"></script>
   </body>
 </html>
