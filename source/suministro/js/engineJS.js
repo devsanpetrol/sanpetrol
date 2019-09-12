@@ -1,9 +1,17 @@
 $(document).ready( function () {
-    $('#tabla_pedidos').DataTable( {
+    $('#tabla_pedidos').DataTable({
         paging: false,
         searching: false,
-        ordering: false
-    } );
+        ordering: false,
+        bDestroy: true,
+        createdRow: function ( row, data, index ) {
+            $(row).addClass('pointer');
+            $('td', row).eq(2).addClass('resalta');
+        },
+        language: {
+            zeroRecords: "Ningun elemento seleccionado"
+        }
+    });
     $('.mi-selector').select2({
         placeholder: 'Escriba la descripción del producto...',
         dropdownParent: $('#mod_pedido'),
@@ -49,16 +57,19 @@ $(document).ready( function () {
         }
     });
     //Delete buttons
-    $('.dt-delete').each(function () {
-        $(this).on('click', function(evt){
-            $this = $(this);
-            var dtRow = $this.parents('tr');
-            if(confirm("Are you sure to delete this row?")){
-                var table = $('#tabla_pedidos').DataTable();
-                table.row(dtRow[0].rowIndex-1).remove().draw( false );
-            }
-        });
+    var table = $('#tabla_pedidos').DataTable();
+    $('#tabla_pedidos tbody').on( 'click', 'tr', function () {
+        if ( $(this).hasClass('selected')) {
+            $(this).removeClass('selected');
+        }
+        else {
+            table.$('tr.selected').removeClass('selected');
+            $(this).addClass('selected');
+        }
     });
+    $('#remover').click( function () {
+        table.row('.selected').remove().draw( false );
+    } );
     get_norm_form_solicitud();
 } );
 
@@ -95,24 +106,34 @@ function getValRadio(){
     //console.log($("input[name='grado_r']:checked").val());
 }
 function agregar_pedido(){
-    var t = $('#tabla_pedidos').DataTable();
-    t.row.add( [
-        "<button class='btn btn-danger btn-xs dt-delete'><span class='glyphicon glyphicon-remove' aria-hidden='true'></span></button>",
-        $('#cod_articulo').val(),
-        $('#descripcion').val(),
-        $('#unidad').val(),
-        $('#especificacion').val(),
-        $('#anexo').val(),
-        $('#justificacion').val(),
-        $('#area_aquipo').val()
-    ] ).draw( false );
-    
-    reset_select2();
-    $('#cod_articulo').val('');
-    $('#descripcion').val('');
-    $('#unidad').val('1');
-    $('#especificacion').val('');
-    $('#anexo').val('');
-    $('#justificacion').val('');
-    $('#area_aquipo').val('');
+    if(valida_pedido()){
+        var t = $('#tabla_pedidos').DataTable();
+        t.row.add( [
+            $('#cod_articulo').val(),
+            $('#descripcion').val(),
+            $('#unidad').val(),
+            $('#especificacion').val(),
+            $('#anexo').val(),
+            $('#justificacion').val(),
+            $('#area_aquipo').val()
+        ] ).draw( false );
+        
+        reset_select2();
+        $('#cod_articulo').val('');
+        $('#descripcion').val('');
+        $('#unidad').val('1');
+        $('#especificacion').val('');
+        $('#anexo').val('');
+        $('#justificacion').val('');
+        $('#area_aquipo').val('');
+    }else{
+        alert('No se agrego ningun pedido');
+    }
+}
+function valida_pedido(){
+    if ($('#descripcion').val().trim().length === 0 || $('#unidad').val() <= 0 || $('#area_aquipo').val().trim().length === 0 || $('#justificacion').val().trim().length === 0){
+        return false;
+    }else{
+        return true;
+    }
 }

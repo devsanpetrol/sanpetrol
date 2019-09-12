@@ -6,7 +6,7 @@
                   <li><a><i class="fa fa-home"></i> Suministro <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="index.php">Almacen <span class="label label-danger pull-right">Construcción</span></a></li>
-                      <li><a href="solicitud_material.php">Solicitud de Material <span class="label label-success pull-right">Ahora!</span></a></li>
+                      <li><a href="solicitud_material.php">Solicitud de Material <span class="label label-success pull-right">Construcción</span></a></li>
                     </ul>
                   </li>
                 </ul>

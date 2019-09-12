@@ -38,6 +38,7 @@
     <link href="../../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="../../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+    <link href="css/css_custom.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -77,16 +78,20 @@
                     <br />
                     <form id="sol_mat" class="form-horizontal form-label-left input_mask" data-numformat="SP-MX-CA-FO-003">
                     <div class="row">
-                        <div class="col-sm-10 form-group"></div>
-                        <div class="col-md-2 form-group">
-                            <button type="button" style="width: 100%" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mod_pedido"><i class="fa fa-plus"></i> Agregar</button>
+                        <div class="col-sm-11"></div>
+                        <div class="col-md-1  input-group">
+                            <span class="input-group-btn">
+                                <button type="button" style="width: 100%; color: red;" class="btn btn-default btn-sm" id="remover" title="Remover seleccionado"><i class="fa fa-trash"></i></button>
+                            </span>
+                            <span class="input-group-btn">
+                                <button type="button" style="width: 100%" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mod_pedido" title="Agregar"><i class="fa fa-plus"></i></button>
+                            </span>
                         </div>
                     </div>
                     <div class="row">
-                       <table id="tabla_pedidos" class="table table-striped compact dt-responsive nowrap" cellspacing="0" width="100%">
+                       <table id="tabla_pedidos" class="table table-striped compact dt-responsive nowrap jambo_table bulk_action" cellspacing="0" width="100%">
                        <thead>
                          <tr>
-                           <th>No. Partida</th>
                            <th>Clave</th>
                            <th>Articulo</th>
                            <th>Cant.</th>
