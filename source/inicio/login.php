@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title> SANPETROL </title>
 
     <!-- Bootstrap -->
@@ -29,21 +28,24 @@
       <div class="login_wrapper">
         <div class="animate form login_form">
           <section class="login_content">
-            <form>
+              <form action="engine_session.php" method="post" id="form_login">
               <h1>Inicio de sesión</h1>
               <div>
-                <input type="text" class="form-control" placeholder="Nombre de usuario" required="" />
+                  <input type="text" name="user" class="form-control" id="user" placeholder="Nombre de usuario" required />
               </div>
               <div>
-                <input type="password" class="form-control" placeholder="Contraseña" required="" />
+                  <input type="password" name="password" id="password" class="form-control" placeholder="Contraseña" required />
               </div>
+                <div class="alert alert-danger alert-dismissible fade in" role="alert" style="display: none;" id="msj_alert">
+                    Usuario o contraseña no valido
+                </div>
               <div>
                 <div class="x_content">
                   <div class="row">
                     <div class="col-sm-9">
                     </div>
                     <div class="col-sm-3">
-                        <button type="button" style="width: 100%" class="btn btn-primary btn-sm">Iniciar</button>
+                        <button type="button" style="width: 100%" class="btn btn-primary btn-sm" onclick="get_login_acces()">Iniciar</button>
                     </div>
                   </div>
                 </div>
@@ -104,5 +106,8 @@
         </div>
       </div>
     </div>
+    <!-- jQuery -->
+    <script src="../../vendors/jquery/dist/jquery.min.js"></script>
+    <script src="js/engineJS.js"></script>
   </body>
 </html>
