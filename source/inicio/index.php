@@ -1,9 +1,8 @@
 <?php
 session_start();
 
-if(!empty($_SESSION['userid'])){
-    echo 'Session iniciada';
-    echo '<a href="logout.php">Logout</a>';
+if(empty($_SESSION['id_usuario'])){
+   header("location:login.php");
 }else{
     header("location:login.php");
 }
