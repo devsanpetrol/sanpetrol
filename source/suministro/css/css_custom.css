@@ -1,3 +1,14 @@
 .resalta{
     font-weight: bold;
 }
+.boldred{
+    color: red;
+    font-weight:bold;
+}
+.boldblue{
+    color: blue;
+    font-weight:bold;
+}
+.no-visible{
+    display: none;
+}

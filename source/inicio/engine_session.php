@@ -21,5 +21,6 @@ if(count($chk_session)== 1){
     $_SESSION['departamento'] = $chk_session[0]['departamento'];
     $_SESSION['nombre'] = $chk_session[0]['nombre'];
     $_SESSION['apellidos'] = $chk_session[0]['apellidos'];
+    $_SESSION['id_empleado'] = $chk_session[0]['id_empleado'];
 }
-header('location:./index.php');
+header('location:../index.php');

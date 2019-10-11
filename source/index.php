@@ -56,9 +56,6 @@
                 <div class="x_panel">
                   <div class="x_title">
                     <h2><small>Bienvenido a SanPetrol</small></h2>
-                    <ul class="quick-list">
-                    <li><i class="fa fa-info-circle"></i><a href="#" data-toggle="modal" data-target="#mod_num_formato">SP-MX-CA-FO-003</a></li>
-                    </ul>
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">

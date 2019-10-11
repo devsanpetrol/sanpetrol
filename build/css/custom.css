@@ -2248,7 +2248,8 @@ select.parsley-error {
 }
 .bad input,
 .bad select,
-.bad textarea {
+.bad textarea,
+.bad number {
     border: 1px solid #CE5454;
     box-shadow: 0 0 4px -2px #CE5454;
     position: relative;
@@ -2345,7 +2346,7 @@ a.btn-danger {
     color: #fff
 }
 .btn-success {
-    background: #26B99A;
+    background: #5cb85c;
     border: 1px solid #169F85
 }
 .btn-success:hover,

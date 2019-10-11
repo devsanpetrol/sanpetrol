@@ -6,7 +6,7 @@
         <a id="menu_toggle"><i class="fa fa-bars"></i></a>
       </div>
 
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="nav navbar-nav navbar-right" id="user_id_employe" data-idempleado="<?php echo $_SESSION['id_empleado']; ?>">
         <li class="">
           <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               <img src="../../production/images/img.jpg" alt=""><?php echo $_SESSION['nombre']; ?>
@@ -21,7 +21,7 @@
               </a>
             </li>
             <li><a href="javascript:;">Ayuda</a></li>
-            <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
+            <li><a href="../inicio/logout.php"><i class="fa fa-sign-out pull-right"></i> Cerrar Sesión</a></li>
           </ul>
         </li>
 

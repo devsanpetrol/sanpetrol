@@ -28,7 +28,7 @@
     <!-- bootstrap-daterangepicker -->
     <link href="../../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
     <!-- bootstrap-datetimepicker -->
-    <script src="../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="../../vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- Custom Theme Style -->
     <link href="../../build/css/custom.css" rel="stylesheet">
     <!-- Select2 -->
@@ -48,7 +48,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-                <a href="index.html" class="site_title" style="height: 90px;">
+                <a href="../index.php" class="site_title" style="height: 90px;">
                 <div class="profile profile_pic"><img src="../../page/img/logo.jpg" alt="..." class="img-circle profile_img"></div><span>SANPETROL</span></a>
             </div>
             <div class="clearfix"></div>
@@ -77,29 +77,48 @@
                   </div>
                   <div class="x_content">
                     <br />
-                    <form id="sol_mat" class="form-horizontal form-label-left input_mask" data-numformat="SP-MX-CA-FO-003">
+                        <form id="sol_mat" class="form-horizontal form-label-left input_mask" data-numformat="SP-MX-CA-FO-003" data-idformat="1">
                     <div class="row">
-                        <div class="col-sm-11"></div>
-                        <div class="col-md-1  input-group">
+                        <div class="col-sm-7">
+                            <div class="flex" id="flex">
+                              <ul class="list-inline" style="margin-top: 0px; margin-bottom: 0px;">
+                                  
+                              </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="button" style="width:100%;font-weight:bold;display:none;" class="btn btn-default btn-md red" data-folioz="0" id="folioxx"></button>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="text" class="form-control" id="fecha_actual" readonly>
+                        </div>
+                        <div class="col-sm-1 input-group">
                             <span class="input-group-btn">
-                                <button type="button" style="width: 100%; color: red;" class="btn btn-default btn-sm" id="remover" title="Remover seleccionado"><i class="fa fa-trash"></i></button>
+                                <button type="button" style="width: 100%; color: red;" class="btn btn-default btn-md" id="remover" title="Remover seleccionado"><i class="fa fa-trash"></i></button>
                             </span>
                             <span class="input-group-btn">
-                                <button type="button" style="width: 100%" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mod_pedido" title="Agregar"><i class="fa fa-plus"></i></button>
+                                <button id="btn_agregapedido" type="button" style="width: 100%" class="btn btn-primary btn-md" data-toggle="modal" data-target="#mod_pedido" title="Agregar"><i class="fa fa-plus"></i></button>
                             </span>
                         </div>
                     </div>
                     <div class="row">
-                       <table id="tabla_pedidos" class="table table-striped compact dt-responsive nowrap jambo_table bulk_action" cellspacing="0" width="100%">
-                       <thead>
+                       <table id="tabla_pedidos" class="table table-striped compact nowrap jambo_table bulk_action" cellspacing="0" width="100%">
+                       <thead class="nowrap">
                          <tr>
+                           <th></th>
                            <th>Clave</th>
                            <th>Articulo</th>
+                           <th>Unidad</th>
                            <th>Cant.</th>
                            <th>Descripció detallada del articulo</th>
                            <th>Anexo/Condición</th>
                            <th>Justificación</th>
                            <th>Area ó Equipo destinado</th>
+                           <th>Aprueba</th>
+                           <th>Aprueba</th>
+                           <th>Grado Requerimiento</th>
+                           <th>Fecha Requerimiento</th>
+                           <th>ID Categoría</th>
                          </tr>
                        </thead>
                        <tbody></tbody>
@@ -112,7 +131,7 @@
                             <button type="button" class="btn btn-primary">Cancelar</button>
                         </div>
                         <div class="col-md-1 form-group">
-                            <button type="button" class="btn btn-success">Enviar</button>
+                            <button type="button" class="btn btn-success" onclick="get_folio()" id="btn_guardapedido">Enviar</button>
                         </div>
                       </div>
                     </form>
@@ -161,7 +180,7 @@
           </div>
         </div>
         <div class="modal fade bs-example-modal-lg" tabindex="-1" id="mod_pedido" data-backdrop="static" data-keyboard="false" role="dialog" aria-hidden="true">
-          <div class="modal-dialog modal-md">
+          <div class="modal-dialog modal-lg">
             <div class="modal-content">
               <div class="modal-header">
               </div>
@@ -200,36 +219,55 @@
                       <label>Codigo</label>
                       <input type="text" class="form-control" id="cod_articulo" readonly>
                     </div>
-                    <div class="col-sm-8 form-group">
-                      <label>Articulo</label>
-                      <input type="text" class="form-control" id="descripcion">
+                    <div class="col-sm-6 form-group">
+                      <label>Articulo</label><label style="color: red;"> *</label>
+                      <input type="text" class="form-control" id="descripcion" required="true" onkeyup="mayus(this);">
                     </div>
                     <div class="col-sm-2 form-group">
-                      <label>Unidades</label>
-                      <input type="number" class="form-control" name="quantity" step="1" value="1" id="unidad">
+                      <label>Unid.</label>
+                      <select name="select" class="select2_group form-control" id="unidad">
+                        <option value="pza">Pieza</option>
+                        <option value="kgr">Kilogramo</option>
+                        <option value="mtr">Metro</option>
+                        <option value="pqt">Paquete</option>
+                        <option value="cja">Caja</option>
+                        <option value="ltr">Litro</option>
+                        <option value="lte">Lote</option>
+                        <option value="kit">Kit</option>
+                        <option value="par">Par</option>
+                      </select>
                     </div>
-                    <div class="col-sm-12 form-group">
+                    <div class="col-sm-2 form-group">
+                      <label>Cant.</label>
+                      <input type="number" class="form-control" step="1" value="1" min="0" id="cantidad" required="true">
+                    </div>
+                    <div class="col-sm-9 form-group">
                       <label>Descripción detallada</label>
-                      <input type="text" class="form-control" id="especificacion">
+                      <input type="text" class="form-control" id="especificacion" onkeyup="mayus(this);">
+                    </div>
+                    <div class="col-sm-3 form-group">
+                      <label>Categoria</label>
+                      <select name="select" class="select2_group form-control" id="select_categoria" required>
+                      </select>
                     </div>
                     <div class="col-sm-6 form-group">
                       <label>Anexo/Condición</label>
-                      <input type="text" class="form-control" id="anexo">
+                      <input type="text" class="form-control" id="anexo" onkeyup="mayus(this);">
                     </div>
                     <div class="col-sm-6 form-group">
-                      <label>Area/Equipo destinado</label>
-                      <input type="text" class="form-control" id="area_aquipo">
+                      <label>Area/Equipo destinado</label><label style="color: red;"> *</label>
+                      <input type="text" class="form-control" id="area_aquipo" required="true" onkeyup="mayus(this);">
                     </div>
                     <div class="col-sm-12 form-group">
-                      <label>Justificación de compra</label>
-                      <input type="text" class="form-control" id="justificacion">
+                      <label>Justificación de compra</label><label style="color: red;"> *</label>
+                      <input type="text" class="form-control" id="justificacion" required="true" onkeyup="mayus(this);">
                     </div>
                   </div>
                   </form>
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-danger" onclick="getValRadio()">Cancelar</button>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="agregar_pedido()">Agregar</button>
+                  <button type="button" class="btn btn-primary" onclick="agregar_pedido()">Agregar</button>
               </div>
             </div>
           </div>
